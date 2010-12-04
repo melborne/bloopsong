@@ -1,6 +1,3 @@
-#!/usr/local/bin/ruby
-# -*- encoding:utf-8 -*-
-
 require_relative "bloopsong"
 
 mario =
