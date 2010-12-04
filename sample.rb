@@ -1,14 +1,8 @@
-require 'bloops'
+require_relative "bloopsong"
 
-bases = Dir["../../sounds/*.blu"]
+b = BloopSong.init(200) { |b| b.sound(:SQUARE) }
 
-b = Bloops.new
+SCORE = "32 + C E F# 8:A G E C - 8:A 8:F# 8:F# 8:F# 2:G"
 
-bases.each do |base|
-  puts "** playing scale using #{base[/\w+.blu/]}"
-  sound = b.load base
-  b.tune sound, "c c# d eb e f f# g ab a bb b + c"
-  b.play
-  sleep 1 while !b.stopped?
-  b.clear
-end
+b.play(SCORE)
+
