@@ -8,22 +8,14 @@ class BloopSong
     self
   end
 
-  def self.play(opt)
-    score_set = read_score(DATA)
-    tunes = opt[:tune]
-    range_max = score_set[tunes.first].length-1
-    range =
-      if !opt[:range]
-        (0..range_max)
-      elsif opt[:range].end > range_max || opt[:range].end < 0
-        (opt[:range].begin..range_max)
-      else
-        opt[:range]
-      end
+  def self.play(score, opt={})
+    score = read_score(score)
+    tunes = Array(opt[:tune] || :lead)
+    range_max = score[tunes.first].length-1
 
-    for i in range
+    for i in range(opt[:range], range_max)
       tunes.each do |tune|
-        @bloops.tune send(tune), score_set[tune][i]
+        @bloops.tune send(tune), score[tune][i]
       end
       @bloops.play
       sleep 0.01 until @bloops.stopped?
@@ -36,16 +28,16 @@ class BloopSong
     (class << self; self end).module_eval { define_method(name) { yield } }
   end
 
-  def self.sound(name, type)
-    self.instance_variable_set("@#{name}", @bloops.sound( Bloops.module_eval(type) ))
+  def self.sound(name=:lead, type)
+    self.instance_variable_set("@#{name}", @bloops.sound( Bloops.module_eval(type.to_s) ))
     define_class_method(name) { self.instance_variable_get("@#{name}") }
-    yield send(name)
+    yield send(name) if block_given?
     @bloops
   end
 
   def self.read_score(score)
     q = Hash.new([])
-    flag = nil
+    flag = :lead
     score.each_line do |line|
       next if line =~ /^\s*$/
       case line
@@ -55,5 +47,15 @@ class BloopSong
       end
     end
     q
+  end
+
+  def self.range(opt, max)
+    if !opt
+      (0..max)
+    elsif opt.end > max || opt.end < 0
+      (opt.begin..max)
+    else
+      opt
+    end
   end
 end

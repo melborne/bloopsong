@@ -30,8 +30,7 @@ mario =
     end
   end
 
-mario.play(:range => 0..-1, :tune => [:lead, :lead2, :base])
-
+mario.play(DATA, :range => 0..-1, :tune => [:lead, :lead2, :base])
 
 __END__
 :lead
