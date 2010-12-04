@@ -1,4 +1,4 @@
-require_relative "bloopsong"
+require_relative "../lib/bloopsong"
 
 mario =
   BloopSong.init(216) do |b|

@@ -23,7 +23,6 @@ class BloopSong
     end
   end
 
-  private
   def self.define_class_method(name)
     (class << self; self end).module_eval { define_method(name) { yield } }
   end

@@ -1,7 +1,4 @@
-#!/usr/local/bin/ruby
-# -*- encoding:utf-8 -*-
-
-require_relative "bloopsong"
+require_relative "../lib/bloopsong"
 
 zelda = 
   BloopSong.init(120) do |b|
@@ -18,7 +15,7 @@ zelda =
     end
   end
 
-zelda.play(:range => 0..-1, :tune => [:lead, :lead2, :base])
+zelda.play(DATA, :range => 0..-1, :tune => [:lead, :lead2, :base])
 
 
 __END__
