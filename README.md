@@ -1,6 +1,6 @@
 # Bloopsong
 
-TODO: Write a gem description
+bloopsong is a DSL for _why's bloopsaphone.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+See samples. or [Rubyでマリオを奏でよう！](http://melborne.github.com/2010/05/27/Ruby-_why-bloopsaphone/ "Rubyでマリオを奏でよう！")(Japanese Description)
 
 ## Contributing
 
