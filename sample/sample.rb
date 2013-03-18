@@ -1,4 +1,4 @@
-require_relative "../lib/bloopsong"
+require "bloopsong"
 
 b = BloopSong.init(200) { |b| b.sound(:SQUARE) }
 
